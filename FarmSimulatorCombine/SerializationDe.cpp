@@ -39,19 +39,57 @@ json S::Load() {
     }
 }
 
-bool S::AddCombine(const std::string& id, const json& combineData) {
-    data["Combines"].push_back({
-        {"ID_Name", id},
-        {"Charackter", combineData}
-        });
-    Save();
-    return true;
-}
-
-bool S::UpdateUserBallance(const double& money) {
+bool S::ResetBalance() {
     try
     {
-        data["User"]["Balance"] += money;
+        Load();
+        data["Audit"]["All"] = 0;
+        data["Audit"]["Spend"] = 0;
+        Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error reset balance: " << e.what() << endl;
+        return false;
+    }
+}
+
+bool S::AddCombine(const std::string& id_nam) {
+    Load();
+    try
+    {
+        for (const auto ttl : data["CombinesMall"])        
+            if (ttl["ID_Name"] == id_nam)
+            {
+                json new_combine = {
+                    {"ID_Name", id_nam},
+                    {"Characteristics", {
+                        {"Durability", ttl["Characteristics"]["Durability"]},
+                        {"DurabilityData", ttl["Characteristics"]["DurabilityData"]},
+                        {"Fuel", ttl["Characteristics"]["Fuel"]},
+                        {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"]},
+                        {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"]}
+                    }}
+                };
+                data["Combines"].push_back(new_combine);
+                break;
+            }        
+        Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error add new combine: " << e.what() << endl;
+        return false;
+    }
+}
+
+bool S::UpdateUserBallance(double money) {
+    try
+    {
+        money += data["User"]["Balance"];
+        data["User"]["Balance"] = money;
         Save();
         return true;
     }
@@ -61,6 +99,35 @@ bool S::UpdateUserBallance(const double& money) {
         return false;
     }
 }
+bool S::UpdateAuditAll(double money) {
+    try
+    {
+        money += data["Audit"]["All"];
+        data["Audit"]["All"] = money;
+        Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error update audit all: " << e.what() << endl;
+        return false;
+    }
+}
+bool S::UpdateAuditSpend(double money) {
+    try
+    {
+        money += data["Audit"]["Spend"];
+        data["Audit"]["Spend"] = money;
+        Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error update audit spend: " << e.what() << endl;
+        return false;
+    }
+}
+
 bool S::UpdateField(const int& newSize, const bool& coRo) {
     try
     {
@@ -83,14 +150,13 @@ bool S::UpdateField(const int& newSize, const bool& coRo) {
         return false;
     }
 }
-bool S::UpdateFuelLevel(const double& resizeTo, const string& id_nam) {
+bool S::UpdateFuelLevel(double resizeTo, const string& id_nam) {
     Load();
     try {
         for (auto& combine : data["Combines"]) {
             if (combine["ID_Name"] == id_nam) {
-                double ttl = combine["Characteristics"]["Fuel"];
-                double resoult = ttl + resizeTo;
-                combine["Characteristics"]["Fuel"] = resoult;
+                resizeTo += combine["Characteristics"]["Fuel"].get<double>();
+                combine["Characteristics"]["Fuel"] = resizeTo;
                 Save();
                 return true;
             }
@@ -99,6 +165,23 @@ bool S::UpdateFuelLevel(const double& resizeTo, const string& id_nam) {
     }
     catch (const std::exception& e) {
         throw runtime_error("Error updating fuel value: " + string(e.what()));
+    }
+}
+bool S::UpdateDurability(double resizeTo, const string& id_nam) {
+    Load();
+    try {
+        for (auto& combine : data["Combines"]) {
+            if (combine["ID_Name"] == id_nam) {
+                resizeTo += combine["Characteristics"]["Durability"].get<double>();
+                combine["Characteristics"]["Durability"] = resizeTo;
+                Save();
+                return true;
+            }
+        }
+        throw runtime_error("ID_Name not found: " + id_nam);
+    }
+    catch (const std::exception& e) {
+        throw runtime_error("Error updating durability value: " + string(e.what()));
     }
 }
 
@@ -123,6 +206,7 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
                     {"Durability", ttl["Characteristics"]["Durability"].get<double>()},
                     {"Fuel", ttl["Characteristics"]["Fuel"].get<double>()},
                     {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"].get<double>()},
+                    {"DurabilityData", ttl["Characteristics"]["DurabilityData"].get<double>()},
                     {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"].get<double>()}
                 };
                 return mapCharacter;
@@ -135,6 +219,14 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
 
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
+}
+const double S::GetAuditSpend() {
+    data = Load();
+    return data["Audit"]["Spend"];
+}
+const double S::GetAuditAll() {
+    data = Load();
+    return data["Audit"]["All"];
 }
 
 bool S::SetSizeFieldRows(const int& setSize){
@@ -192,4 +284,28 @@ bool S::SetFuelLevel(const double& resizeTo, const string& id_nam) {
         throw runtime_error("Error updating fuel value: " + string(e.what()));
     }
 }
-
+bool S::SetAuditSpend(const double& money) {
+    try
+    {
+        data["Audit"]["All"] = money;
+        Save();
+        return true;
+    }
+    catch (const std::exception& e) {
+        cerr << "Error update audit all: " << e.what() << endl;
+        return false;
+    }
+}
+bool S::SetAuditAll(const double& money) {
+    try
+    {
+        data["Audit"]["Spend"] = money;
+        Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error update audit spend: " << e.what() << endl;
+        return false;
+    }
+}

@@ -10,16 +10,21 @@ int main()
     SerializationDe S;
 
 
+    cout<<S.AddCombine("JohnDeer1");
 
 
     
-    for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
-    {
-        cout << s.first << s.second << endl;
-    }
-    S.UpdateFuelLevel(-2.4, "JohnDeerPRO");
-    map<string, double> s = S.GetCharacteristics("JohnDeerPRO");
-    cout << s["Fuel"]<<endl;
+    //for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
+    //{
+    //    cout << s.first << s.second << endl;
+    //}
+    //
+    ///*cout << S.UpdateDurability(-2.4, "JohnDeerPRO") << endl;
+    //cout << S.UpdateFuelLevel(-5.1, "JohnDeerPRO") << endl;*/
+    //map<string, double> s = S.GetCharacteristics("JohnDeerPRO");
+    //cout << s["Fuel"] << endl;
+    //cout << s["Durability"] << endl;
+
     /*
     S.SetFuelLevel(150, "JohnDeerPRO");
     map<string, double> sq = S.GetCharacteristics("JohnDeerPRO");
