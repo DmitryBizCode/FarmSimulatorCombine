@@ -1,0 +1,52 @@
+﻿// FarmSimulatorCombine.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
+//
+
+#include <iostream>
+#include "SerializationDe.h"
+
+int main()
+{
+    std::cout << "Hello World!\n";
+    SerializationDe S;
+
+
+
+
+    
+    for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
+    {
+        cout << s.first << s.second << endl;
+    }
+    S.UpdateFuelLevel(-2.4, "JohnDeerPRO");
+    map<string, double> s = S.GetCharacteristics("JohnDeerPRO");
+    cout << s["Fuel"]<<endl;
+    /*
+    S.SetFuelLevel(150, "JohnDeerPRO");
+    map<string, double> sq = S.GetCharacteristics("JohnDeerPRO");
+    cout << sq["Fuel"] << endl;*/
+
+
+    /*
+    cout << S.GetFieldColumns() << endl;
+    cout << S.GetFieldRows() << endl;
+
+    cout << S.UpdateField(40, 0) << endl;
+    cout << S.GetFieldColumns()<<endl;
+    cout << S.GetFieldRows() << endl;*/
+
+
+
+
+    return 0;
+}
+
+// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
+// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+
+// Советы по началу работы 
+//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
+//   2. В окне Team Explorer можно подключиться к системе управления версиями.
+//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
+//   4. В окне "Список ошибок" можно просматривать ошибки.
+//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
+//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.

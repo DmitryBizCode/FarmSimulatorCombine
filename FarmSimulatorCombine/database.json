@@ -1,0 +1,29 @@
+{
+    "Combines": [
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "Fuel": 100.0,
+                "FuelCapacity": 100.0,
+                "FuelConsumption": 1.0
+            },
+            "ID_Name": "JohnDeer"
+        },
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "Fuel": 150.0,
+                "FuelCapacity": 150.0,
+                "FuelConsumption": 0.9
+            },
+            "ID_Name": "JohnDeerPRO"
+        }
+    ],
+    "Field": {
+        "Columns": 50,
+        "Rows": 200
+    },
+    "User": {
+        "Balance": 100.0
+    }
+}
