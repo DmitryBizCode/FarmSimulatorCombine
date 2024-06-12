@@ -1,51 +1,13 @@
 #include "SerializationDe.h"
 #define S SerializationDe
 
-bool S::Save() {
-    ofstream file(filename);
-    try {
-        if (file.is_open()) {
-            file << data.dump(4);  // 4 - кількість відступів для форматування
-            file.close();
-            return true;
-        }
-        else {
-            cerr << "Cant open a file to rewrite" << endl;
-            return false;
-        }
-    }
-    catch (const std::exception& e) {
-        cerr << "Error to ofstream file save: " << e.what() << endl;
-        return false;
-    }
-}
-json S::Load() {
-    try
-    {
-        ifstream file(filename);
-        json data;
-        if (file.is_open()) {
-            file >> data;
-            file.close();
-        }
-        else {
-            cerr << "Cant open a file" << std::endl;
-        }
-        return data;
-    }
-    catch (const std::exception& e)
-    {
-        cerr << "Error to load a file" << e.what() << endl;
-    }
-}
-
 bool S::ResetBalance() {
     try
     {
-        Load();
-        data["Audit"]["All"] = 0;
-        data["Audit"]["Spend"] = 0;
-        Save();
+        jsonAccess.Load();
+        jsonAccess.data["Audit"]["All"] = 0;
+        jsonAccess.data["Audit"]["Spend"] = 0;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -56,10 +18,10 @@ bool S::ResetBalance() {
 }
 
 bool S::AddCombine(const std::string& id_nam) {
-    Load();
+    jsonAccess.Load();
     try
     {
-        for (const auto ttl : data["CombinesMall"])        
+        for (const auto ttl : jsonAccess.data["CombinesMall"])
             if (ttl["ID_Name"] == id_nam)
             {
                 json new_combine = {
@@ -72,10 +34,10 @@ bool S::AddCombine(const std::string& id_nam) {
                         {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"]}
                     }}
                 };
-                data["Combines"].push_back(new_combine);
+                jsonAccess.data["Combines"].push_back(new_combine);
                 break;
             }        
-        Save();
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -84,13 +46,30 @@ bool S::AddCombine(const std::string& id_nam) {
         return false;
     }
 }
+bool S::SellCombine(const std::string& id_nam) {
+    jsonAccess.Load();
+    try {
+        for (auto it = jsonAccess.data["Combines"].begin(); it != jsonAccess.data["Combines"].end(); ++it) {
+            if ((*it)["ID_Name"] == id_nam) {
+                jsonAccess.data["Combines"].erase(it);
+                jsonAccess.Save();
+                return true;
+            }
+        }
+        return false;
+    }
+    catch (const std::exception& e) {
+        cerr << "Error removing combine: " << e.what() << endl;
+        return false;
+    }
+}
 
 bool S::UpdateUserBallance(double money) {
     try
     {
-        money += data["User"]["Balance"];
-        data["User"]["Balance"] = money;
-        Save();
+        money += jsonAccess.data["User"]["Balance"];
+        jsonAccess.data["User"]["Balance"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -102,9 +81,9 @@ bool S::UpdateUserBallance(double money) {
 bool S::UpdateAuditAll(double money) {
     try
     {
-        money += data["Audit"]["All"];
-        data["Audit"]["All"] = money;
-        Save();
+        money += jsonAccess.data["Audit"]["All"];
+        jsonAccess.data["Audit"]["All"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -116,9 +95,9 @@ bool S::UpdateAuditAll(double money) {
 bool S::UpdateAuditSpend(double money) {
     try
     {
-        money += data["Audit"]["Spend"];
-        data["Audit"]["Spend"] = money;
-        Save();
+        money += jsonAccess.data["Audit"]["Spend"];
+        jsonAccess.data["Audit"]["Spend"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -133,14 +112,14 @@ bool S::UpdateField(const int& newSize, const bool& coRo) {
     {
         if (coRo)
         {
-            data["Field"]["Columns"] = data["Field"]["Columns"] + newSize;
-            Save();
+            jsonAccess.data["Field"]["Columns"] = jsonAccess.data["Field"]["Columns"] + newSize;
+            jsonAccess.Save();
             return true;
         }
         else
         {
-            data["Field"]["Rows"] = data["Field"]["Rows"] + newSize;
-            Save();
+            jsonAccess.data["Field"]["Rows"] = jsonAccess.data["Field"]["Rows"] + newSize;
+            jsonAccess.Save();
             return true;
         }
     }
@@ -151,13 +130,13 @@ bool S::UpdateField(const int& newSize, const bool& coRo) {
     }
 }
 bool S::UpdateFuelLevel(double resizeTo, const string& id_nam) {
-    Load();
+    jsonAccess.Load();
     try {
-        for (auto& combine : data["Combines"]) {
+        for (auto& combine : jsonAccess.data["Combines"]) {
             if (combine["ID_Name"] == id_nam) {
                 resizeTo += combine["Characteristics"]["Fuel"].get<double>();
                 combine["Characteristics"]["Fuel"] = resizeTo;
-                Save();
+                jsonAccess.Save();
                 return true;
             }
         }
@@ -168,13 +147,13 @@ bool S::UpdateFuelLevel(double resizeTo, const string& id_nam) {
     }
 }
 bool S::UpdateDurability(double resizeTo, const string& id_nam) {
-    Load();
+    jsonAccess.Load();
     try {
-        for (auto& combine : data["Combines"]) {
+        for (auto& combine : jsonAccess.data["Combines"]) {
             if (combine["ID_Name"] == id_nam) {
                 resizeTo += combine["Characteristics"]["Durability"].get<double>();
                 combine["Characteristics"]["Durability"] = resizeTo;
-                Save();
+                jsonAccess.Save();
                 return true;
             }
         }
@@ -186,23 +165,24 @@ bool S::UpdateDurability(double resizeTo, const string& id_nam) {
 }
 
 const double S::GetUserBallance() {
-    data = Load();
-    return data["User"]["Balance"];
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["User"]["Balance"];
 }
 const int S::GetFieldRows() {
-    data = Load();
-    return data["Field"]["Rows"];
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["Field"]["Rows"];
 }
 const int S::GetFieldColumns() {
-    data = Load();
-    return data["Field"]["Columns"];
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["Field"]["Columns"];
 }
 const map<string, double> S::GetCharacteristics(const string& nam_Id) {
-    Load();
+    jsonAccess.Load();
     try {
-        for (const auto& ttl : data["Combines"]) {
+        for (const auto& ttl : jsonAccess.data["Combines"]) {
             if (ttl["ID_Name"] == nam_Id) {
                 map<string, double> mapCharacter{
+                    {"Price", ttl["Characteristics"]["Price"].get<double>()},
                     {"Durability", ttl["Characteristics"]["Durability"].get<double>()},
                     {"Fuel", ttl["Characteristics"]["Fuel"].get<double>()},
                     {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"].get<double>()},
@@ -220,20 +200,46 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
 }
+const tuple<vector<string>,vector<map<string, double>>> S::GetCharacteristicsMarket()
+{
+    jsonAccess.Load();
+    try {
+        vector<string> strVector;
+        vector<map<string, double>> mapVector;
+        for (const auto& ttl : jsonAccess.data["CombinesMall"]) {
+            string str = ttl["ID_Name"];
+            map<string, double> mapCharacter{
+                {"Price", ttl["Characteristics"]["Price"].get<double>()},
+                {"Durability", ttl["Characteristics"]["Durability"].get<double>()},
+                {"Fuel", ttl["Characteristics"]["Fuel"].get<double>()},
+                {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"].get<double>()},
+                {"DurabilityData", ttl["Characteristics"]["DurabilityData"].get<double>()},
+                {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"].get<double>()}
+            };
+            strVector.push_back(str);
+            mapVector.push_back(mapCharacter);
+        }
+        return make_tuple(strVector, mapVector);
+    }
+    catch (const std::exception& e) {
+        cerr << "Error GetCharacteristics market combine: " << e.what() << endl;
+        //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
+    }
+}
 const double S::GetAuditSpend() {
-    data = Load();
-    return data["Audit"]["Spend"];
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["Audit"]["Spend"];
 }
 const double S::GetAuditAll() {
-    data = Load();
-    return data["Audit"]["All"];
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["Audit"]["All"];
 }
 
 bool S::SetSizeFieldRows(const int& setSize){
     try
     {
-        data["Field"]["Rows"] = setSize;
-        Save();
+        jsonAccess.data["Field"]["Rows"] = setSize;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -245,8 +251,8 @@ bool S::SetSizeFieldRows(const int& setSize){
 bool S::SetSizeFieldColumns(const int& setSize) {
     try
     {
-        data["Field"]["Columns"] = setSize;
-        Save();
+        jsonAccess.data["Field"]["Columns"] = setSize;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -258,8 +264,8 @@ bool S::SetSizeFieldColumns(const int& setSize) {
 bool S::SetUserBallance(const double& money) {
     try
     {
-        data["User"]["Balance"] = money;
-        Save();
+        jsonAccess.data["User"]["Balance"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)
@@ -269,12 +275,12 @@ bool S::SetUserBallance(const double& money) {
     }
 }
 bool S::SetFuelLevel(const double& resizeTo, const string& id_nam) {
-    Load();
+    jsonAccess.Load();
     try {
-        for (auto& combine : data["Combines"]) {
+        for (auto& combine : jsonAccess.data["Combines"]) {
             if (combine["ID_Name"] == id_nam) {
                 combine["Characteristics"]["Fuel"] = resizeTo;
-                Save();
+                jsonAccess.Save();
                 return true;
             }
         }
@@ -287,8 +293,8 @@ bool S::SetFuelLevel(const double& resizeTo, const string& id_nam) {
 bool S::SetAuditSpend(const double& money) {
     try
     {
-        data["Audit"]["All"] = money;
-        Save();
+        jsonAccess.data["Audit"]["All"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e) {
@@ -299,8 +305,8 @@ bool S::SetAuditSpend(const double& money) {
 bool S::SetAuditAll(const double& money) {
     try
     {
-        data["Audit"]["Spend"] = money;
-        Save();
+        jsonAccess.data["Audit"]["Spend"] = money;
+        jsonAccess.Save();
         return true;
     }
     catch (const std::exception& e)

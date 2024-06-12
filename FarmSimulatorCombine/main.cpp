@@ -2,18 +2,39 @@
 //
 
 #include <iostream>
+#include "Combine.h"
+
 #include "SerializationDe.h"
 
 int main()
 {
-    std::cout << "Hello World!\n";
-    SerializationDe S;
+    /*std::cout << "Hello World!\n";
+    SerializationDe S;*/
+
+    Combine C("JohnDeerPRO");
+    C.DisplayCharacteristics();
 
 
-    cout<<S.AddCombine("JohnDeer1");
+
+    /*try {
+        auto marketData = S.GetCharacteristicsMarket();
+        auto id_names = get<0>(marketData);
+        auto characteristics = get<1>(marketData);
+
+        for (size_t i = 0; i < id_names.size(); ++i) {
+            cout << "ID_Name: " << id_names[i] << endl;
+            for (const auto& kv : characteristics[i]) {
+                cout << kv.first << ": " << kv.second << endl;
+            }
+        }
+    }
+    catch (const std::exception& e) {
+        cerr << e.what() << endl;
+    }*/
 
 
-    
+    //cout<<S.SellCombine("JohnDeer1");
+
     //for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
     //{
     //    cout << s.first << s.second << endl;

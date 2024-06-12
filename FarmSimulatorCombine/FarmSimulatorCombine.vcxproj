@@ -127,13 +127,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Combine.cpp" />
+    <ClCompile Include="JsonAccess.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="SerializationDe.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AbstractCombine.h" />
+    <ClInclude Include="Combine.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="JsonAccess.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="SerializationDe.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="FarmSimulatorCombine.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

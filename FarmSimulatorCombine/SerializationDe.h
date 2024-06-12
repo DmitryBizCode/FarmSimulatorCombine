@@ -3,6 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <map>
+#include "JsonAccess.h"
 
 using namespace std;
 #include "nlohmann/json.hpp"
@@ -11,19 +12,13 @@ using json = nlohmann::json;
 
 class SerializationDe {
 private:
-    json data;
-    string filename = "database.json";
-
-    json Load();
-    bool Save();
-
+    JsonAccess jsonAccess;
     bool ResetBalance();
+
 protected:
     bool SetSizeFieldRows(const int& setSize);
     bool SetSizeFieldColumns(const int& setSize);
     bool SetUserBallance(const double& money);
-
-
 
     bool SetFuelLevel(const double& resizeTo, const string& id_nam);
     bool SetAuditSpend(const double& money);
@@ -38,21 +33,17 @@ protected:
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
 
-public:    
+    bool AddCombine(const std::string& id_nam);
+    bool SellCombine(const std::string& id_nam);
 
-    SerializationDe() {data = Load();}
+public:    
+    SerializationDe() { jsonAccess.data = jsonAccess.Load();}
 
     const map<string, double> GetCharacteristics(const string& nam_Id);
+    const tuple<vector<string>, vector<map<string, double>>> GetCharacteristicsMarket();
     const double GetUserBallance();
     const int GetFieldRows();
     const int GetFieldColumns();
     const double GetAuditSpend();
     const double GetAuditAll();
-
-
-
-
-
-    bool AddCombine(const std::string& id_nam);
-    bool SellCombine(const std::string& id_nam);
 };
