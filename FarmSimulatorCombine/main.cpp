@@ -8,12 +8,20 @@
 
 int main()
 {
-    /*std::cout << "Hello World!\n";
-    SerializationDe S;*/
+    cout << "Hello World!\n";
 
     Combine C("JohnDeerPRO");
     C.DisplayCharacteristics();
+    cout << endl;
+    C.setDurability(10);
+    C.DisplayCharacteristics();
+    cout << endl;
+    SerializationDe S;
 
+    for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
+    {
+        cout << s.first << s.second << endl;
+    }
 
 
     /*try {

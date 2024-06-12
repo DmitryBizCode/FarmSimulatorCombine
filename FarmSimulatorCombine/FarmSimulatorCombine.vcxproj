@@ -138,7 +138,6 @@
     <ClInclude Include="Combine.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="JsonAccess.h" />
-    <ClInclude Include="resource.h" />
     <ClInclude Include="SerializationDe.h" />
   </ItemGroup>
   <ItemGroup>

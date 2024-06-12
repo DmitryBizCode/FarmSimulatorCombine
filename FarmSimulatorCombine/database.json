@@ -6,70 +6,70 @@
     "Combines": [
         {
             "Characteristics": {
-              "Price": 800,
-              "Durability": 100.0,
-              "DurabilityData": 1.0,
-              "Fuel": 100.0,
-              "FuelCapacity": 100,
-              "FuelConsumption": 1.0
+                "Durability": 100.0,
+                "DurabilityData": 1.0,
+                "Fuel": 100.0,
+                "FuelCapacity": 100,
+                "FuelConsumption": 1.0,
+                "Price": 800
             },
             "ID_Name": "JohnDeer"
         },
         {
-          "Characteristics": {
-            "Price": 1000,
-            "Durability": 95.19999999999999,
-            "DurabilityData": 0.95,
-            "Fuel": 84.70000000000002,
-            "FuelCapacity": 150.0,
-            "FuelConsumption": 0.9
-          },
+            "Characteristics": {
+                "Durability": 145.2,
+                "DurabilityData": 0.95,
+                "Fuel": 84.70000000000002,
+                "FuelCapacity": 150.0,
+                "FuelConsumption": 0.9,
+                "Price": 1000
+            },
             "ID_Name": "JohnDeerPRO"
         }
     ],
     "CombinesMall": [
         {
-          "Characteristics": {
-            "Price": 800,
-            "Durability": 100.0,
-            "DurabilityData": 1.0,
-            "Fuel": 5.0,
-            "FuelCapacity": 100,
-            "FuelConsumption": 1.0
-          },
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 1.0,
+                "Fuel": 5.0,
+                "FuelCapacity": 100,
+                "FuelConsumption": 1.0,
+                "Price": 800
+            },
             "ID_Name": "JohnDeer"
         },
         {
-          "Characteristics": {
-            "Price": 1000,
-            "Durability": 100.0,
-            "DurabilityData": 0.95,
-            "Fuel": 5,
-            "FuelCapacity": 150.0,
-            "FuelConsumption": 0.9
-          },
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 0.95,
+                "Fuel": 5,
+                "FuelCapacity": 150.0,
+                "FuelConsumption": 0.9,
+                "Price": 1000
+            },
             "ID_Name": "JohnDeerPRO"
         },
         {
-          "Characteristics": {
-            "Price": 1500,
-            "Durability": 100.0,
-            "DurabilityData": 0.85,
-            "Fuel": 5.0,
-            "FuelCapacity": 175,
-            "FuelConsumption": 0.9
-          },
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 0.85,
+                "Fuel": 5.0,
+                "FuelCapacity": 175,
+                "FuelConsumption": 0.9,
+                "Price": 1500
+            },
             "ID_Name": "JohnDeer1"
         },
         {
-          "Characteristics": {
-            "Price": 2000,
-            "Durability": 100,
-            "DurabilityData": 0.9,
-            "Fuel": 5,
-            "FuelCapacity": 120.0,
-            "FuelConsumption": 0.8
-          },
+            "Characteristics": {
+                "Durability": 100,
+                "DurabilityData": 0.9,
+                "Fuel": 5,
+                "FuelCapacity": 120.0,
+                "FuelConsumption": 0.8,
+                "Price": 2000
+            },
             "ID_Name": "JohnDeerPRO2"
         }
     ],
@@ -78,6 +78,7 @@
         "Rows": 200
     },
     "User": {
-        "Balance": 100.0
+        "Balance": 100.0,
+        "Years": 2024
     }
 }

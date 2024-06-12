@@ -44,9 +44,6 @@
     <ClInclude Include="Combine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>Файлы заголовков</Filter>
-    </ClInclude>
     <ClInclude Include="AbstractCombine.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>

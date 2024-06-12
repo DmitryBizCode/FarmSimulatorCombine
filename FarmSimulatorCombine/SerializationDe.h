@@ -23,12 +23,14 @@ protected:
     bool SetFuelLevel(const double& resizeTo, const string& id_nam);
     bool SetAuditSpend(const double& money);
     bool SetAuditAll(const double& money);
+    bool SetUserYears(const unsigned int& years);
 
     bool UpdateDurability( double resizeTo, const string& id_nam);
     bool UpdateFuelLevel(double resizeTo, const string& id_nam);
 
     bool UpdateField(const int& newSize, const bool& coRo);
 
+    bool UpdateUserYears();
     bool UpdateUserBallance(double money);
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
@@ -46,4 +48,5 @@ public:
     const int GetFieldColumns();
     const double GetAuditSpend();
     const double GetAuditAll();
+    const unsigned int GetYears();
 };

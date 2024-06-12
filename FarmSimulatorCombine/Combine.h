@@ -18,20 +18,19 @@ private:
     const double FuelCapacity;
     const double FuelConsumption;
 public:
-    Combine(const string& id_Name) : ID_Name(id_Name),Durability(0),DurabilityData(0),Fuel(0),FuelCapacity(0),FuelConsumption(0), Price(0){
-        map<string, double> ttl = GetCharacteristics(ID_Name);
-        if (!ttl.empty()) {
-            Durability = ttl["Durability"];
-            const_cast<int&>(Price) = ttl["Price"];
-            const_cast<double&>(DurabilityData) = ttl["DurabilityData"];
-            Fuel = ttl["Fuel"];
-            const_cast<double&>(FuelCapacity) = ttl["FuelCapacity"];
-            const_cast<double&>(FuelConsumption) = ttl["FuelConsumption"];
-        }
-    }
+    Combine(const string& id_Name);
+    Combine(const Combine& other);
+    Combine()
+        : ID_Name("Unknown"),
+        Price(0),
+        Durability(0),
+        DurabilityData(0),
+        Fuel(0),
+        FuelCapacity(0),
+        FuelConsumption(0) {}
 
     // Гетери
-    std::string getID_Name() const override;
+    string getID_Name() const override;
     double getDurability() const override;
     double getDurabilityData() const override;
     double getFuel() const override;
@@ -40,10 +39,9 @@ public:
     double getPrice() const override;
 
     // Сетери
-    void setDurability(double durability) override;
-    void setFuel(double fuel) override;
+    bool setDurability(const double& durability) override;
+    bool setFuel(const double& fuel) override;
 
-    // Додаткові методи
     void DisplayCharacteristics() const override;
 };
 

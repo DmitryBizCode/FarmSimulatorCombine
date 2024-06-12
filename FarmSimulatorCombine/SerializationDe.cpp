@@ -21,7 +21,7 @@ bool S::AddCombine(const std::string& id_nam) {
     jsonAccess.Load();
     try
     {
-        for (const auto ttl : jsonAccess.data["CombinesMall"])
+        for (const auto& ttl : jsonAccess.data["CombinesMall"])
             if (ttl["ID_Name"] == id_nam)
             {
                 json new_combine = {
@@ -78,6 +78,21 @@ bool S::UpdateUserBallance(double money) {
         return false;
     }
 }
+bool S::UpdateUserYears() {
+    try
+    {
+        int ttl = jsonAccess.data["User"]["Years"] + 1;
+        jsonAccess.data["User"]["Years"] = ttl;
+        jsonAccess.Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error update user ballance: " << e.what() << endl;
+        return false;
+    }
+}
+
 bool S::UpdateAuditAll(double money) {
     try
     {
@@ -164,6 +179,7 @@ bool S::UpdateDurability(double resizeTo, const string& id_nam) {
     }
 }
 
+
 const double S::GetUserBallance() {
     jsonAccess.data = jsonAccess.Load();
     return jsonAccess.data["User"]["Balance"];
@@ -233,6 +249,10 @@ const double S::GetAuditSpend() {
 const double S::GetAuditAll() {
     jsonAccess.data = jsonAccess.Load();
     return jsonAccess.data["Audit"]["All"];
+}
+const unsigned int S::GetYears() {
+    jsonAccess.data = jsonAccess.Load();
+    return jsonAccess.data["User"]["Years"];
 }
 
 bool S::SetSizeFieldRows(const int& setSize){
@@ -312,6 +332,19 @@ bool S::SetAuditAll(const double& money) {
     catch (const std::exception& e)
     {
         cerr << "Error update audit spend: " << e.what() << endl;
+        return false;
+    }
+}
+bool S::SetUserYears(const unsigned int& years) {
+    try
+    {
+        jsonAccess.data["User"]["Years"] = years;
+        jsonAccess.Save();
+        return true;
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error set new value to Years user: " << e.what() << endl;
         return false;
     }
 }
