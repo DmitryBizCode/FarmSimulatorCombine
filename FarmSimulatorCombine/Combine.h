@@ -42,6 +42,11 @@ public:
     bool setDurability(const double& durability) override;
     bool setFuel(const double& fuel) override;
 
+    bool SellCombine() { 
+        SerializationDe::SellCombine(ID_Name); 
+        delete this;
+        return true;
+    }
     void DisplayCharacteristics() const override;
 };
 

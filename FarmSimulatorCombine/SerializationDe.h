@@ -35,8 +35,8 @@ protected:
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
 
-    bool AddCombine(const std::string& id_nam);
-    bool SellCombine(const std::string& id_nam);
+    bool AddCombine(const string& id_nam);
+    bool SellCombine(const string& id_nam);
 
 public:    
     SerializationDe() { jsonAccess.data = jsonAccess.Load();}

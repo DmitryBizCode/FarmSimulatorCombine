@@ -95,11 +95,13 @@ bool S::UpdateUserYears() {
 
 bool S::UpdateAuditAll(double money) {
     try
-    {
-        money += jsonAccess.data["Audit"]["All"];
-        jsonAccess.data["Audit"]["All"] = money;
-        jsonAccess.Save();
-        return true;
+    { 
+        if (money >= 0) {
+            money += jsonAccess.data["Audit"]["All"];
+            jsonAccess.data["Audit"]["All"] = money;
+            jsonAccess.Save();
+            return true;
+        }
     }
     catch (const std::exception& e)
     {
