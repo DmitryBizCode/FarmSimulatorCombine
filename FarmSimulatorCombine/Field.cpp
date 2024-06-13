@@ -37,33 +37,59 @@ bool Field::CheckField() {
                 return false;
     return true;
 }
-bool Field::Harvest() {
-    double fuel = Com.getFuel();
-    double fuelConsumption = Com.getFuelConsumption();
-    double durability = Com.getDurability();
-    double durabilityData = Com.getDurabilityData();
-
-    for (size_t i = 0; i < rows; i++)    
-        for (size_t j = 0; j < cols; j++)        
-            if (fuel >= fuelConsumption && (durability - durabilityData * 3) > 0 && matrix[i][j] != Empty)
-            {
-                fuel -= (fuelConsumption * Com.getDurability() * 0.01 * FieldTypeToInt(matrix[i][j]));
-                durability -= (durabilityData * 0.01 * FieldTypeToInt(matrix[i][j]));
-                coin += CoinFlex[matrix[i][j]];
-                matrix[i][j] = Empty;
-            }
-    Com.setFuel((Com.getFuel() - fuel) * (-1));
-    Com.setDurability((Com.getDurability() - durability) * (-1));
-    UpdateAuditAll(coin);
-    UpdateUserBallance(coin);
-    if (SesonTime == Winter)
+bool Field::doingTask() {
+    try
     {
-        SesonTime = Summer;
-        UpdateUserYears();
+        double fuel = Com.getFuel();
+        double fuelConsumption = Com.getFuelConsumption();
+        double durability = Com.getDurability();
+        double durabilityData = Com.getDurabilityData();
+
+        for (size_t i = 0; i < rows; i++)
+            for (size_t j = 0; j < cols; j++)
+                if ((fuel >= (fuelConsumption * 2)) && ((durability - durabilityData * 3) > 0) && (matrix[i][j] != Empty))
+                {
+                    fuel -= (0.1 * fuelConsumption * (1 - (Com.getDurability() * 0.01)) * FieldTypeToInt(matrix[i][j]));
+                    durability -= (durabilityData * 0.01 * FieldTypeToInt(matrix[i][j]));
+                    coin += CoinFlex[matrix[i][j]];
+                    matrix[i][j] = Empty;
+                }
+
+        Com.setFuel((Com.getFuel() - fuel) * (-1));
+        Com.setDurability((Com.getDurability() - durability) * (-1));
+        UpdateAuditAll(coin);
+        UpdateUserBallance(coin);
+        if (SesonTime == Winter)
+        {
+            SesonTime = Summer;
+            UpdateUserYears();
+        }
+        else
+            SesonTime = Winter;
+        return true;
     }
-    else
-        SesonTime = Winter;    
-    return true;
+    catch (const std::exception& e)
+    {
+        cerr << "Error Field doingTask: " << e.what() << endl;
+        return false;
+    }
+}
+bool Field::Harvest() {
+    try
+    {
+        if (CheckField())        
+            doingTask();        
+        else
+        {
+            ConsistOfField();
+            doingTask();
+        }
+    }
+    catch (const std::exception& e)
+    {
+        cerr << "Error Field Harvest: " << e.what() << endl;
+        return false;
+    }
 }
 
 

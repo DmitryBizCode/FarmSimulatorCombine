@@ -51,13 +51,15 @@ double Combine::getPrice() const {
 
 // Сетери
 bool Combine::setDurability(const double& durability) {
-    UpdateDurability(durability, this->ID_Name);
+    UpdateDurability(durability, ID_Name);
     Durability += durability;
     return true;
 }
 
 bool Combine::setFuel(const double& fuel) {
-    UpdateFuelLevel(fuel, this->ID_Name);
+    SerializationDe S;
+    S.UpdateFuelLevel(fuel, ID_Name);
+
     Fuel += fuel;
     return true;
 }

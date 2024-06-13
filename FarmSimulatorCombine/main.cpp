@@ -10,18 +10,38 @@
 int main()
 {
     cout << "Hello World!\n";
+    SerializationDe S;
 
     Combine C("JohnDeerPRO");
-    C.DisplayCharacteristics();
-    cout << endl;
-    C.setDurability(10);
-    C.DisplayCharacteristics();
-    cout << endl;
-    SerializationDe S;
     Field F(C);
+    C.DisplayCharacteristics();
+    cout << S.GetAuditAll() << endl;
+    cout << S.GetAuditSpend() << endl;
+    cout << S.GetUserBallance() << endl;
     F.ConsistOfField();
+    F.Harvest();
+    C.DisplayCharacteristics();
+    cout << S.GetAuditAll() << endl;
+    cout << S.GetAuditSpend() << endl;
+    cout << S.GetUserBallance() << endl;
+    //cout << F.CheckField()<<endl;
+    SerializationDe E;
 
-    F.DisplayMatrix();
+    //E.SetFuelLevel(5, "JohnDeerPRO");
+    map<string, double> s = E.GetCharacteristics("JohnDeerPRO");
+    cout << s["Fuel"] << endl;
+    cout << s["Durability"] << endl;
+
+    //C.DisplayCharacteristics();
+    //cout << endl;
+    //C.setDurability(10);
+    //C.DisplayCharacteristics();
+    //cout << endl;
+    //SerializationDe S;
+    //Field F(C);
+    //F.ConsistOfField();
+
+    //F.DisplayMatrix();
 
     //for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
     //{

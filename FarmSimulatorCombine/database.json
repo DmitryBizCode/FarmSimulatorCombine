@@ -1,6 +1,6 @@
 {
-    "Audit ": {
-        "All": 0.0,
+    "Audit": {
+        "All": 5425.4,
         "Spend": 0.0
     },
     "Combines": [
@@ -17,9 +17,9 @@
         },
         {
             "Characteristics": {
-                "Durability": 355.2,
+                "Durability": 60.0,
                 "DurabilityData": 0.95,
-                "Fuel": 84.70000000000002,
+                "Fuel": 38.619999999999465,
                 "FuelCapacity": 150.0,
                 "FuelConsumption": 0.9,
                 "Price": 1000
@@ -74,11 +74,11 @@
         }
     ],
     "Field": {
-        "Columns": 50,
+        "Columns": 20,
         "Rows": 20
     },
     "User": {
-        "Balance": 100.0,
+        "Balance": 5525.4,
         "Years": 2024
     }
 }

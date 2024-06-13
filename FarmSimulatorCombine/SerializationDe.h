@@ -20,13 +20,11 @@ protected:
     bool SetSizeFieldColumns(const int& setSize);
     bool SetUserBallance(const double& money);
 
-    bool SetFuelLevel(const double& resizeTo, const string& id_nam);
     bool SetAuditSpend(const double& money);
     bool SetAuditAll(const double& money);
     bool SetUserYears(const unsigned int& years);
 
     bool UpdateDurability( double resizeTo, const string& id_nam);
-    bool UpdateFuelLevel(double resizeTo, const string& id_nam);
 
     bool UpdateField(const int& newSize, const bool& coRo);
 
@@ -40,6 +38,8 @@ protected:
 
 public:    
     SerializationDe() { jsonAccess.data = jsonAccess.Load();}
+    bool SetFuelLevel(const double& resizeTo, const string& id_nam);
+    bool UpdateFuelLevel(const double& resizeTo, const string& id_nam);
 
     const map<string, double> GetCharacteristics(const string& nam_Id);
     const tuple<vector<string>, vector<map<string, double>>> GetCharacteristicsMarket();
