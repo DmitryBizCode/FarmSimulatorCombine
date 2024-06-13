@@ -1,32 +1,38 @@
 #include "Field.h"
+bool Field::ConsistOfField() {
+    try {
+        uniform_int_distribution<int> dist(0, 99);
+        for (size_t i = 0; i < rows; ++i)
+            for (size_t j = 0; j < cols; ++j) {
+                int rand_value = dist(rng);
+                if (rand_value < 90)
+                    matrix[i][j] = Wheat;
+                else if (rand_value < 96)
+                    matrix[i][j] = HalfWheat;
+                else
+                    matrix[i][j] = Bushes;
+            }
+        return true;
+    }
+    catch (const std::exception& e) {
+        cerr << "Error ConsistOfField: " << e.what() << endl;
+        return false;
+    }
+}
 
-
-//bool Field::ConsistOfField() {
-//    try
-//    {
-//		uniform_int_distribution<int> dist(0, 99);
-//		for (size_t i = 0; i < rows; i++)
-//			for (size_t j = 0; j < cols; j++)
-//			{
-//				int rand_value = dist(rng);
-//				if (rand_value < 90)
-//					matrix[i][j] = Wheat;
-//				else if (rand_value < 96)
-//					matrix[i][j] = HalfWheat;
-//				else
-//					matrix[i][j] = Bushes;
-//			}
-//		return true;
-//    }
-//    catch (const std::exception& e)
-//    {
-//        cerr << "Error ConsistOfField: " << e.what() << endl;
-//        return false;
-//    }
-//}
-//bool Field::Harvest() {
-//
-//}
+bool Field::DisplayMatrix() {
+    for (size_t i = 0; i < rows; ++i) {
+        for (size_t j = 0; j < cols; ++j)
+            cout << FieldTypeToChar(matrix[i][j]) << " ";
+        cout << endl;
+    }
+    cout << endl;
+    Com.DisplayCharacteristics();
+    return true;
+}
+bool Field::Harvest() {
+	return true;
+}
 
 
 

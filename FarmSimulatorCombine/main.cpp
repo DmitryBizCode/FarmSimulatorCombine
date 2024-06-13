@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Combine.h"
+#include "Field.h"
 
 #include "SerializationDe.h"
 
@@ -17,11 +18,15 @@ int main()
     C.DisplayCharacteristics();
     cout << endl;
     SerializationDe S;
+    Field F(C);
+    F.ConsistOfField();
 
-    for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
-    {
-        cout << s.first << s.second << endl;
-    }
+    F.DisplayMatrix();
+
+    //for (auto& s : S.GetCharacteristics("JohnDeerPRO"))
+    //{
+    //    cout << s.first << s.second << endl;
+    //}
 
 
     /*try {

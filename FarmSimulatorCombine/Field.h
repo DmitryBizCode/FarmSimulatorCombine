@@ -21,15 +21,27 @@ private:
     int cols;
     bool years = false;
     mt19937 rng;
-    //Combine Com;
+    Combine& Com;
     vector<vector<FieldType>> matrix;
+
+    char FieldTypeToChar(FieldType type) const {
+        switch (type) {
+        case Wheat: return 'W';
+        case HalfWheat: return 'H';
+        case Bushes: return 'B';
+        case Empty: return 'E';
+        default: return '?';
+        }
+    }
 public:
-    /*Field(Combine& Com) : Com(Com), rng(random_device{}()) {
+    Field(Combine& Com) : Com(Com), rng(random_device{}()) {
         rows = GetFieldRows();
         cols = GetFieldColumns();
-    }*/
-    //bool ConsistOfField();
-    //bool Harvest();
+        matrix.resize(rows, vector<FieldType>(cols, Empty));
+    }
+    bool DisplayMatrix();
+    bool ConsistOfField();
+    bool Harvest();
 };
 
 //class Field {

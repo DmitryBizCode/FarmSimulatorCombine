@@ -24,6 +24,7 @@ json JsonAccess::Load() {
         json data;
         if (file.is_open()) {
             file >> data;
+            this->data = data;
             file.close();
         }
         else {
