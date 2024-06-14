@@ -39,9 +39,10 @@ public:
     double getPrice() const override;
 
     bool CheckReality();
+
+    ///потрібно повернути перевірку та списання коштів + дюрабіліті те саме ціна 5/л 10/починка
     bool Zap() {
-        SerializationDe S;
-        S.UpdateFuelLevel(50,ID_Name);
+        UpdateFuelLevel(1000,ID_Name);
         return true;
     }
     void DisplayCharacteristics() const override;

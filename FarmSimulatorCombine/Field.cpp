@@ -44,7 +44,6 @@ bool Field::doingTask() {
         double fuelConsumption = Com.getFuelConsumption();
         double durability = Com.getDurability();
         double durabilityData = Com.getDurabilityData();
-
         for (size_t i = 0; i < rows; i++)
             for (size_t j = 0; j < cols; j++)
                 if ((fuel >= (fuelConsumption * 2)) && ((durability - durabilityData * 3) > 0) && (matrix[i][j] != Empty))

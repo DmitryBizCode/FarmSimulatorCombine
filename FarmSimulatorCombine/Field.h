@@ -44,7 +44,6 @@ private:
             default: return -5;
         }
     }
-    bool CheckField();
     bool doingTask();
 public:
     Field(Combine& Com) : Com(Com), rng(random_device{}()) {
@@ -53,6 +52,7 @@ public:
         SesonTime = Autumn;
         matrix.resize(rows, vector<FieldType>(cols, Empty));
     }
+    bool CheckField();
     bool DisplayMatrix();
     bool ConsistOfField();
     bool Harvest();

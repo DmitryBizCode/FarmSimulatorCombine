@@ -15,7 +15,7 @@ int main()
 
 
     Combine C ("JohnDeerPRO");
-    /*Field F(C);
+    Field F(C);
 
     C.DisplayCharacteristics();
     cout << S.GetAuditAll() << endl;
@@ -23,17 +23,24 @@ int main()
     cout << S.GetUserBallance() << endl;
     F.ConsistOfField();
     F.Harvest();
+    //F.Harvest();
     C.DisplayCharacteristics();
     cout << S.GetAuditAll() << endl;
     cout << S.GetAuditSpend() << endl;
     cout << S.GetUserBallance() << endl;
     SerializationDe E;
+    Combine Cw("JohnDeerPRO");
+
+    cout << Cw.Zap()<<endl;
     map<string, double> s = E.GetCharacteristics("JohnDeerPRO");
     cout << s["Fuel"] << endl;
     cout << s["Durability"] << endl;
+    cout << F.CheckField();
     cout << endl << endl << endl << endl << endl;
-    cout<<C.CheckReality();*/
-    cout<<S.SellCombine(C.getID_Name());
+    cout<<C.CheckReality();
+    //S.UpdateFuelLevel(50, C.getID_Name());
+
+    //cout<<S.SellCombine(C.getID_Name());
 
     //C.DisplayCharacteristics();
     //cout << endl;
