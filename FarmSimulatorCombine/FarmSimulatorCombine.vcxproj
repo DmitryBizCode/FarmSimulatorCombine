@@ -131,6 +131,7 @@
     <ClCompile Include="JsonAccess.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Field.cpp" />
+    <ClCompile Include="Market.cpp" />
     <ClCompile Include="SerializationDe.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -138,6 +139,7 @@
     <ClInclude Include="Combine.h" />
     <ClInclude Include="Field.h" />
     <ClInclude Include="JsonAccess.h" />
+    <ClInclude Include="Market.h" />
     <ClInclude Include="SerializationDe.h" />
   </ItemGroup>
   <ItemGroup>

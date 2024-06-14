@@ -32,7 +32,8 @@ bool S::AddCombine(const std::string& id_nam) {
                         {"DurabilityData", ttl["Characteristics"]["DurabilityData"]},
                         {"Fuel", ttl["Characteristics"]["Fuel"]},
                         {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"]},
-                        {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"]}
+                        {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"]},
+                        { "Price", ttl["Characteristics"]["Price"] }
                     }}
                 };
                 jsonAccess.data["Combines"].push_back(new_combine);
@@ -222,6 +223,7 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
                 return mapCharacter;
             }
         }
+        cerr << "Didnt find combine " << nam_Id <<" in your garage" << endl;
         return {};
     }
     catch (const std::exception& e) {

@@ -33,10 +33,11 @@ protected:
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
 
+
+public:    
     bool AddCombine(const string& id_nam);
     bool SellCombine(const string& id_nam);
 
-public:    
     SerializationDe() { jsonAccess.data = jsonAccess.Load();}
     bool SetFuelLevel(const double& resizeTo, const string& id_nam);
     bool UpdateFuelLevel(const double& resizeTo, const string& id_nam);

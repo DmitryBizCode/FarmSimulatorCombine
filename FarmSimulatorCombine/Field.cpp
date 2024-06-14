@@ -55,16 +55,19 @@ bool Field::doingTask() {
                     matrix[i][j] = Empty;
                 }
 
-        Com.setFuel((Com.getFuel() - fuel) * (-1));
-        Com.setDurability((Com.getDurability() - durability) * (-1));
+        UpdateFuelLevel((Com.getFuel() - fuel) * (-1), Com.getID_Name());
+        UpdateDurability((Com.getDurability() - durability) * (-1),Com.getID_Name());
+
+        Com.UpdateCharacteristics();
+
         UpdateAuditAll(coin);
         UpdateUserBallance(coin);
-        if (SesonTime == Winter)
+        if (SesonTime == Winter && CheckField())
         {
             SesonTime = Summer;
             UpdateUserYears();
         }
-        else
+        else if (CheckField())
             SesonTime = Winter;
         return true;
     }
@@ -77,12 +80,15 @@ bool Field::doingTask() {
 bool Field::Harvest() {
     try
     {
-        if (CheckField())        
-            doingTask();        
+        if (CheckField()) {
+            doingTask();
+            return true;
+        }
         else
         {
             ConsistOfField();
             doingTask();
+            return true;
         }
     }
     catch (const std::exception& e)

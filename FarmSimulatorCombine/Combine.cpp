@@ -45,23 +45,27 @@ double Combine::getFuelCapacity() const {
 double Combine::getFuelConsumption() const {
     return FuelConsumption;
 }
+
 double Combine::getPrice() const {
     return Price;
 }
 
-// Сетери
-bool Combine::setDurability(const double& durability) {
-    UpdateDurability(durability, ID_Name);
-    Durability += durability;
-    return true;
+bool Combine::CheckReality() {
+    auto a = GetCharacteristics(ID_Name);
+    if (a.size() == 0)
+        return false;
+    else
+        return true;
 }
 
-bool Combine::setFuel(const double& fuel) {
-    SerializationDe S;
-    S.UpdateFuelLevel(fuel, ID_Name);
-
-    Fuel += fuel;
-    return true;
+bool Combine::UpdateCharacteristics() {
+    std::map<std::string, double> ttl = GetCharacteristics(ID_Name);
+    if (!ttl.empty()) {
+        Durability = ttl["Durability"];
+        Fuel = ttl["Fuel"];
+        return true;
+    }
+    return false;
 }
 
 void Combine::DisplayCharacteristics() const {

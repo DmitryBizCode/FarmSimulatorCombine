@@ -11,9 +11,12 @@ int main()
 {
     cout << "Hello World!\n";
     SerializationDe S;
+    //S.AddCombine("JohnDeerPRO");
 
-    Combine C("JohnDeerPRO");
-    Field F(C);
+
+    Combine C ("JohnDeerPRO");
+    /*Field F(C);
+
     C.DisplayCharacteristics();
     cout << S.GetAuditAll() << endl;
     cout << S.GetAuditSpend() << endl;
@@ -24,13 +27,13 @@ int main()
     cout << S.GetAuditAll() << endl;
     cout << S.GetAuditSpend() << endl;
     cout << S.GetUserBallance() << endl;
-    //cout << F.CheckField()<<endl;
     SerializationDe E;
-
-    //E.SetFuelLevel(5, "JohnDeerPRO");
     map<string, double> s = E.GetCharacteristics("JohnDeerPRO");
     cout << s["Fuel"] << endl;
     cout << s["Durability"] << endl;
+    cout << endl << endl << endl << endl << endl;
+    cout<<C.CheckReality();*/
+    cout<<S.SellCombine(C.getID_Name());
 
     //C.DisplayCharacteristics();
     //cout << endl;

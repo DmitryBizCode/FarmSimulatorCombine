@@ -38,15 +38,15 @@ public:
     double getFuelConsumption() const override;
     double getPrice() const override;
 
-    // Сетери
-    bool setDurability(const double& durability) override;
-    bool setFuel(const double& fuel) override;
-
-    bool SellCombine() { 
-        SerializationDe::SellCombine(ID_Name); 
-        delete this;
+    bool CheckReality();
+    bool Zap() {
+        SerializationDe S;
+        S.UpdateFuelLevel(50,ID_Name);
         return true;
     }
     void DisplayCharacteristics() const override;
+
+
+    bool UpdateCharacteristics();
 };
 
