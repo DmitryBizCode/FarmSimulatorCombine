@@ -23,7 +23,7 @@ enum SesonTime
     Autumn
 };
 
-class Field : protected SerializationDe {
+class Field : private SerializationDe {
 private:
     int rows;
     int cols;
@@ -67,7 +67,7 @@ public:
         matrix.resize(rows, vector<FieldType>(cols, Empty));
         SesonTime = Autumn;
         vector<vector<int>> matrixInt = fiStat.Deserialize();
-        if (matrixInt.size() >= 19)
+        if (matrixInt.size() >= rows || matrixInt[0].size() >= cols)
         {
             // Кількість рядків
             rows = matrixInt.size();
@@ -77,36 +77,9 @@ public:
                     matrix[i][j] = IntToFieldType(matrixInt[i][j]);
         }
     }
-    bool TransmitArrray() {
-        vector<vector<int>> matrixInt(rows, vector<int>(cols));
-        for (size_t i = 0; i < rows; i++)
-        {
-            for (size_t j = 0; j < cols; j++)
-            {
-                matrixInt[i][j] = FieldTypeToInt(matrix[i][j]);
-            }
-        }
-        fiStat.Serialize(matrixInt);
-        return true;
-    }
+    bool TransmitArrray();
     bool CheckField();
     bool DisplayMatrix();
     bool Harvest();
 };
-//class Field {
-//public:
-//    Field(int rows = 20, int cols = 20);
-//    void Display() const;
-//    void SetValue(int row, int col, FieldType value);
-//    void Randomize();
-//    FieldType GetValue(int row, int col) const;
-//    int GetRows()const;
-//    int GetCols()const;
-//    void ExpandField(int additional_rows, int additional_cols);
-//    bool BuyFields(int count);
-//private:
-//    int _rows;
-//    int _cols;
-//    mt19937 rng;
-//    vector<vector<FieldType>> matrix;
-//};
+

@@ -33,7 +33,6 @@ protected:
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
 
-
 public:    
     bool AddCombine(const string& id_nam);
     bool SellCombine(const string& id_nam);
@@ -43,6 +42,8 @@ public:
     bool UpdateFuelLevel(const double& resizeTo, const string& id_nam);
 
     const map<string, double> GetCharacteristics(const string& nam_Id);
+    const vector<string> GetCharacteristicsArrayName();
+
     const tuple<vector<string>, vector<map<string, double>>> GetCharacteristicsMarket();
     const double GetUserBallance();
     const int GetFieldRows();   

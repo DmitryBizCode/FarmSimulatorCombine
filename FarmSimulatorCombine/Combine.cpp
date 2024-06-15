@@ -194,7 +194,8 @@ bool Combine::UpdateCharacteristics() {
     return false;
 }
 
-void Combine::DisplayCharacteristics() const {
+void Combine::DisplayCharacteristics() {
+    UpdateCharacteristics();
     std::cout << "ID_Name: " << ID_Name << std::endl;
     std::cout << "Price: " << Price << std::endl;
     std::cout << "Durability: " << Durability << std::endl;

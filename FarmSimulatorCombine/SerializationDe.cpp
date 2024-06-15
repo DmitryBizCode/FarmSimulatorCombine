@@ -260,6 +260,21 @@ const tuple<vector<string>,vector<map<string, double>>> S::GetCharacteristicsMar
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
 }
+const vector<string> S::GetCharacteristicsArrayName()
+{
+    jsonAccess.Load();
+    try {
+        vector<string> strVector;
+        for (const auto& ttl : jsonAccess.data["Combines"])
+            strVector.push_back(ttl["ID_Name"]);
+        return strVector;
+    }
+    catch (const std::exception& e) {
+        cerr << "Error GetCharacteristics market combine: " << e.what() << endl;
+        return {};
+    }
+}
+
 const double S::GetAuditSpend() {
     jsonAccess.data = jsonAccess.Load();
     return jsonAccess.data["Audit"]["Spend"];

@@ -8,7 +8,7 @@
 
 using namespace std;
 
-class Combine : protected SerializationDe, public AbstractCombine {
+class Combine : private SerializationDe, public AbstractCombine {
 private:
 	const string ID_Name;
     const int Price;
@@ -45,7 +45,7 @@ public:
     bool Repair(const int& fixedInt);
     bool FullRepair();
 
-    void DisplayCharacteristics() const override;
+    void DisplayCharacteristics() override;
 
     bool UpdateCharacteristics();
 };

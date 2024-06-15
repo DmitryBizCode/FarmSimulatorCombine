@@ -1,7 +1,7 @@
 {
     "Audit": {
-        "All": 5885.3,
-        "Spend": 2868.0
+        "All": 2244.0,
+        "Spend": 11360.0
     },
     "Combines": [
         {
@@ -14,17 +14,6 @@
                 "Price": 800
             },
             "ID_Name": "JohnDeer"
-        },
-        {
-            "Characteristics": {
-                "Durability": 82.17299999992534,
-                "DurabilityData": 0.95,
-                "Fuel": 17.788335049882605,
-                "FuelCapacity": 150.0,
-                "FuelConsumption": 0.9,
-                "Price": 1000
-            },
-            "ID_Name": "JohnDeerPRO"
         }
     ],
     "CombinesMall": [
@@ -74,11 +63,11 @@
         }
     ],
     "Field": {
-        "Columns": 20,
-        "Rows": 20
+        "Columns": 0,
+        "Rows": 0
     },
     "User": {
-        "Balance": 3011.0,
-        "Years": 2026
+        "Balance": 240.0,
+        "Years": 2024
     }
 }
