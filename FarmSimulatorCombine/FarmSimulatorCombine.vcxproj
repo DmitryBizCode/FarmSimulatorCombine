@@ -138,6 +138,7 @@
     <ClInclude Include="AbstractCombine.h" />
     <ClInclude Include="Combine.h" />
     <ClInclude Include="Field.h" />
+    <ClInclude Include="FieldStaticArray.h" />
     <ClInclude Include="JsonAccess.h" />
     <ClInclude Include="Market.h" />
     <ClInclude Include="SerializationDe.h" />

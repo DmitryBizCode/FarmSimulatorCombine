@@ -109,6 +109,7 @@ bool S::UpdateAuditAll(double money) {
             jsonAccess.Load();
             return true;
         }
+        return false;
     }
     catch (const std::exception& e)
     {
@@ -228,7 +229,7 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
     }
     catch (const std::exception& e) {
         cerr << "Error GetCharacteristics: " << e.what() << endl;
-
+        return {};
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
 }
@@ -255,6 +256,7 @@ const tuple<vector<string>,vector<map<string, double>>> S::GetCharacteristicsMar
     }
     catch (const std::exception& e) {
         cerr << "Error GetCharacteristics market combine: " << e.what() << endl;
+        return {};
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
 }

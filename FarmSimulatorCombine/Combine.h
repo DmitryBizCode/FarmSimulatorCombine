@@ -40,13 +40,12 @@ public:
 
     bool CheckReality();
 
-    ///потрібно повернути перевірку та списання коштів + дюрабіліті те саме ціна 5/л 10/починка
-    bool Zap() {
-        UpdateFuelLevel(1000,ID_Name);
-        return true;
-    }
-    void DisplayCharacteristics() const override;
+    bool Refueling(const int& fuel);
+    bool FullRefueling();
+    bool Repair(const int& fixedInt);
+    bool FullRepair();
 
+    void DisplayCharacteristics() const override;
 
     bool UpdateCharacteristics();
 };

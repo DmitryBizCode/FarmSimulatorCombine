@@ -4,6 +4,7 @@
 #include <iostream>
 #include "Combine.h"
 #include "Field.h"
+#include "FieldStaticArray.h"
 
 #include "SerializationDe.h"
 
@@ -11,33 +12,50 @@ int main()
 {
     cout << "Hello World!\n";
     SerializationDe S;
+
     //S.AddCombine("JohnDeerPRO");
 
-
+    FieldStaticArray A;
     Combine C ("JohnDeerPRO");
     Field F(C);
 
     C.DisplayCharacteristics();
-    cout << S.GetAuditAll() << endl;
-    cout << S.GetAuditSpend() << endl;
-    cout << S.GetUserBallance() << endl;
-    F.ConsistOfField();
+    cout << endl << endl;
+    cout << "S.GetAuditAll()" << S.GetAuditAll() << endl;
+    cout << "S.GetAuditSpend()" << S.GetAuditSpend() << endl;
+    cout << "S.GetUserBallance()" << S.GetUserBallance() << endl;
+    cout << endl << endl;
     F.Harvest();
-    //F.Harvest();
     C.DisplayCharacteristics();
-    cout << S.GetAuditAll() << endl;
-    cout << S.GetAuditSpend() << endl;
-    cout << S.GetUserBallance() << endl;
+    cout << endl << endl;
+    cout << "S.GetAuditAll()" << S.GetAuditAll() << endl;
+    cout << "S.GetAuditSpend()" << S.GetAuditSpend() << endl;
+    cout << "S.GetUserBallance()" << S.GetUserBallance() << endl;
     SerializationDe E;
     Combine Cw("JohnDeerPRO");
-
-    cout << Cw.Zap()<<endl;
+    cout << endl << endl;
+    cout << "Cw.Zap(10)" << Cw.Refueling(10) << endl;
+    cout << endl << endl;
+    cout << "S.GetAuditAll()" << S.GetAuditAll() << endl;
+    cout << "S.GetAuditSpend()" << S.GetAuditSpend() << endl;
+    cout << "S.GetUserBallance()" << S.GetUserBallance() << endl;
+    cout << endl << endl;
     map<string, double> s = E.GetCharacteristics("JohnDeerPRO");
-    cout << s["Fuel"] << endl;
-    cout << s["Durability"] << endl;
-    cout << F.CheckField();
-    cout << endl << endl << endl << endl << endl;
-    cout<<C.CheckReality();
+    cout << "s[Fuel]" << s["Fuel"] << endl;
+    cout << "s[Durability]" << s["Durability"] << endl;
+    cout << "F.CheckField()" << F.CheckField();
+    cout << endl << endl;
+    cout << "C.CheckReality()" << C.CheckReality();
+    cout << endl << endl;
+
+    cout << " F.TransmitArrray()" << F.TransmitArrray();
+
+
+
+
+
+
+
     //S.UpdateFuelLevel(50, C.getID_Name());
 
     //cout<<S.SellCombine(C.getID_Name());

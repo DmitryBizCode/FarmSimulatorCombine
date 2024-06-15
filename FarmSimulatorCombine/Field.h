@@ -5,6 +5,9 @@
 #include <random>
 #include "SerializationDe.h"
 #include "Combine.h"
+#include "FieldStaticArray.h"
+
+using namespace std;
 
 enum FieldType
 {
@@ -19,7 +22,7 @@ enum SesonTime
     Summer,
     Autumn
 };
-using namespace std;
+
 class Field : protected SerializationDe {
 private:
     int rows;
@@ -28,6 +31,7 @@ private:
     double coin = 0;
     mt19937 rng;
     Combine& Com;
+    FieldStaticArray fiStat;
     vector<vector<FieldType>> matrix;
     map<FieldType, double> CoinFlex{
         { Wheat, 0.5},
@@ -35,29 +39,60 @@ private:
         { Bushes, 0.0},
         { Empty , 0.0}
     };
-    float FieldTypeToInt(FieldType type) const {
+    int FieldTypeToInt(FieldType type) const {
         switch (type) {
-            case Wheat: return 1;
-            case HalfWheat: return 2;
-            case Bushes: return 3;
-            case Empty: return 0;
-            default: return -5;
+        case Wheat: return 1;
+        case HalfWheat: return 2;
+        case Bushes: return 3;
+        case Empty: return 0;
+        default: return -5;
+        }
+    }
+    FieldType IntToFieldType(int type) const {
+        switch (type) {
+        case 1: return Wheat;
+        case 2: return HalfWheat;
+        case 3: return Bushes;
+        case 0: return Empty;
+        default: return Empty;
         }
     }
     bool doingTask();
+    bool ConsistOfField();
+
 public:
     Field(Combine& Com) : Com(Com), rng(random_device{}()) {
         rows = GetFieldRows();
         cols = GetFieldColumns();
-        SesonTime = Autumn;
         matrix.resize(rows, vector<FieldType>(cols, Empty));
+        SesonTime = Autumn;
+        vector<vector<int>> matrixInt = fiStat.Deserialize();
+        if (matrixInt.size() >= 19)
+        {
+            // Кількість рядків
+            rows = matrixInt.size();
+            cols = rows > 0 ? matrixInt[0].size() : 0;
+            for (size_t i = 0; i < rows; i++)
+                for (size_t j = 0; j < cols; j++)
+                    matrix[i][j] = IntToFieldType(matrixInt[i][j]);
+        }
+    }
+    bool TransmitArrray() {
+        vector<vector<int>> matrixInt(rows, vector<int>(cols));
+        for (size_t i = 0; i < rows; i++)
+        {
+            for (size_t j = 0; j < cols; j++)
+            {
+                matrixInt[i][j] = FieldTypeToInt(matrix[i][j]);
+            }
+        }
+        fiStat.Serialize(matrixInt);
+        return true;
     }
     bool CheckField();
     bool DisplayMatrix();
-    bool ConsistOfField();
     bool Harvest();
 };
-
 //class Field {
 //public:
 //    Field(int rows = 20, int cols = 20);

@@ -31,9 +31,9 @@ bool Field::DisplayMatrix() {
     return true;
 }
 bool Field::CheckField() {
-    for (size_t i = 0; i < rows; i++)    
-        for (size_t j = 0; j < cols; j++)        
-            if (matrix[i][j] != Empty)            
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < cols; j++)
+            if (matrix[i][j] != Empty)
                 return false;
     return true;
 }
@@ -55,7 +55,7 @@ bool Field::doingTask() {
                 }
 
         UpdateFuelLevel((Com.getFuel() - fuel) * (-1), Com.getID_Name());
-        UpdateDurability((Com.getDurability() - durability) * (-1),Com.getID_Name());
+        UpdateDurability((Com.getDurability() - durability) * (-1), Com.getID_Name());
 
         Com.UpdateCharacteristics();
 
@@ -79,7 +79,7 @@ bool Field::doingTask() {
 bool Field::Harvest() {
     try
     {
-        if (CheckField()) {
+        if (!CheckField()) {
             doingTask();
             return true;
         }
@@ -96,7 +96,6 @@ bool Field::Harvest() {
         return false;
     }
 }
-
 
 
 

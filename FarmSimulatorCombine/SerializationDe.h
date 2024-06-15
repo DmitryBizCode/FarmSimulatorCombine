@@ -14,7 +14,7 @@ class SerializationDe {
 private:
     JsonAccess jsonAccess;
     bool ResetBalance();
-
+    //friend to reset ballance
 protected:
     bool SetSizeFieldRows(const int& setSize);
     bool SetSizeFieldColumns(const int& setSize);
@@ -45,7 +45,7 @@ public:
     const map<string, double> GetCharacteristics(const string& nam_Id);
     const tuple<vector<string>, vector<map<string, double>>> GetCharacteristicsMarket();
     const double GetUserBallance();
-    const int GetFieldRows();
+    const int GetFieldRows();   
     const int GetFieldColumns();
     const double GetAuditSpend();
     const double GetAuditAll();
