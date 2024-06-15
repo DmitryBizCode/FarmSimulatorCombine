@@ -14,8 +14,8 @@ int main()
     cout << "Hello World!\n";
 
 
-    //Market M;
-    //cout<<M.BuyField(56);
+    Market M;
+    cout<<M.BuyField(40);
 
     //cout<<M.SellCombine("JohnDeerPRO");
     //cout<<M.BuyCombine("JohnDeerPRO");
