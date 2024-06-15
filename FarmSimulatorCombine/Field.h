@@ -72,6 +72,8 @@ public:
 
             rows = matrixInt.size();
             cols = rows > 0 ? matrixInt[0].size() : 0;
+            UpdateField(cols, 1);
+            UpdateField(rows, 0);
             vector<vector<FieldType>> ttl;
             ttl.resize(rows, vector<FieldType>(cols, Empty));
             for (size_t i = 0; i < rows; i++)
@@ -84,5 +86,6 @@ public:
     bool CheckField();
     bool DisplayMatrix();
     bool Harvest();
+    bool ResetField();
 };
 

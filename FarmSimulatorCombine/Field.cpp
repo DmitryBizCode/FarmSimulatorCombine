@@ -24,6 +24,20 @@ bool Field::ConsistOfField() {
         return false;
     }
 }
+bool Field::ResetField() {
+    vector<vector<int>> matrixInt = {
+        {0, 0, 0, 0},
+        {0, 0, 0, 0},
+        {0, 0, 0, 0}
+    };
+    UpdateField(4, 1);
+    UpdateField(3, 0);
+    for (size_t i = 0; i < rows; i++)
+        for (size_t j = 0; j < cols; j++)
+            matrixInt[i][j] = FieldTypeToInt(matrix[i][j]);
+    fiStat.Serialize(matrixInt);
+    return true;
+}
 
 bool Field::DisplayMatrix() {
     for (size_t i = 0; i < rows; ++i) {

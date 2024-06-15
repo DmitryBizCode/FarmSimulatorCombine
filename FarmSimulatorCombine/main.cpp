@@ -20,7 +20,7 @@ int main()
     //cout<<M.SellCombine("JohnDeerPRO");
     cout << M.BuyCombine("JohnDeerPRO");
 
-    //SerializationDe S;
+    SerializationDe S;
     M.BuyField(10);
 
 
@@ -42,10 +42,17 @@ int main()
     C.UpdateCharacteristics();
     C.DisplayCharacteristics();
     cout << endl << endl;
-    M.BuyField(10);
+    cout << S.GetFieldRows();
+    cout << endl << endl;
+    cout << S.GetFieldColumns();
+    M.BuyField(50);
     F.Harvest();
     C.UpdateCharacteristics();
     C.DisplayCharacteristics();
+    cout << endl << endl;
+    cout << S.GetFieldRows();
+    cout << endl << endl;
+    cout << S.GetFieldColumns();
     cout << endl << endl;
 
     //cout<<M.BuyField(40);
