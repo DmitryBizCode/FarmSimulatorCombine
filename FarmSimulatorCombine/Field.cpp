@@ -4,6 +4,9 @@ bool Field::ConsistOfField() {
         uniform_int_distribution<int> dist(0, 99);
         rows = GetFieldRows();
         cols = GetFieldColumns();
+        vector<vector<FieldType>> ttl;
+        ttl.resize(rows, vector<FieldType>(cols, Empty));
+        matrix = ttl;
         for (size_t i = 0; i < rows; ++i)
             for (size_t j = 0; j < cols; ++j) {
                 int rand_value = dist(rng);

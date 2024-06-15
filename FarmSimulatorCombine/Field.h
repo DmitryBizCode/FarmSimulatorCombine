@@ -69,12 +69,15 @@ public:
         vector<vector<int>> matrixInt = fiStat.Deserialize();
         if (matrixInt.size() >= rows || matrixInt[0].size() >= cols)
         {
-            // Кількість рядків
+
             rows = matrixInt.size();
             cols = rows > 0 ? matrixInt[0].size() : 0;
+            vector<vector<FieldType>> ttl;
+            ttl.resize(rows, vector<FieldType>(cols, Empty));
             for (size_t i = 0; i < rows; i++)
                 for (size_t j = 0; j < cols; j++)
-                    matrix[i][j] = IntToFieldType(matrixInt[i][j]);
+                    ttl[i][j] = IntToFieldType(matrixInt[i][j]);
+            matrix = ttl;
         }
     }
     bool TransmitArrray();

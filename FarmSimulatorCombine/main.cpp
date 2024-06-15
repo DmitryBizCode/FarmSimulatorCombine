@@ -15,7 +15,40 @@ int main()
 
 
     Market M;
-    cout<<M.BuyField(40);
+    //cout<<M.BuyField(40);
+
+    //cout<<M.SellCombine("JohnDeerPRO");
+    cout << M.BuyCombine("JohnDeerPRO");
+
+    //SerializationDe S;
+    M.BuyField(10);
+
+
+    FieldStaticArray A;
+    Combine C("JohnDeerPRO");
+    Field F(C);
+    C.FullRefueling();
+    C.Repair(50);
+
+
+    C.UpdateCharacteristics();
+    C.DisplayCharacteristics();
+    cout << endl << endl;
+    F.Harvest();
+    C.UpdateCharacteristics();
+    C.DisplayCharacteristics();
+    cout << endl << endl;
+    F.Harvest();
+    C.UpdateCharacteristics();
+    C.DisplayCharacteristics();
+    cout << endl << endl;
+    M.BuyField(10);
+    F.Harvest();
+    C.UpdateCharacteristics();
+    C.DisplayCharacteristics();
+    cout << endl << endl;
+
+    //cout<<M.BuyField(40);
 
     //cout<<M.SellCombine("JohnDeerPRO");
     //cout<<M.BuyCombine("JohnDeerPRO");
