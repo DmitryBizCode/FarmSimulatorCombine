@@ -27,7 +27,7 @@ bool Market::SellCombine(const string& name_Id) {
 bool Market::BuyCombine(const string& name_Id) {
 	try
 	{
-		auto character = GetCharacteristics(name_Id);
+		auto character = GetCharacteristicsM(name_Id);
 		if (GetUserBallance() >= character["Price"])
 		{
 			for (const auto& a : GetCharacteristicsArrayName())

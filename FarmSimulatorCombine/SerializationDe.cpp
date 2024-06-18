@@ -233,6 +233,31 @@ const map<string, double> S::GetCharacteristics(const string& nam_Id) {
         //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
     }
 }
+const map<string, double> S::GetCharacteristicsM(const string& nam_Id) {
+    jsonAccess.Load();
+    try {
+        for (const auto& ttl : jsonAccess.data["CombinesMall"]) {
+            if (ttl["ID_Name"] == nam_Id) {
+                map<string, double> mapCharacter{
+                    {"Price", ttl["Characteristics"]["Price"].get<double>()},
+                    {"Durability", ttl["Characteristics"]["Durability"].get<double>()},
+                    {"Fuel", ttl["Characteristics"]["Fuel"].get<double>()},
+                    {"FuelCapacity", ttl["Characteristics"]["FuelCapacity"].get<double>()},
+                    {"DurabilityData", ttl["Characteristics"]["DurabilityData"].get<double>()},
+                    {"FuelConsumption", ttl["Characteristics"]["FuelConsumption"].get<double>()}
+                };
+                return mapCharacter;
+            }
+        }
+        cerr << "Didnt find combine " << nam_Id << " in your garage" << endl;
+        return {};
+    }
+    catch (const std::exception& e) {
+        cerr << "Error GetCharacteristics: " << e.what() << endl;
+        return {};
+        //throw runtime_error("Error get array from characteristics combine: " + string(e.what()));
+    }
+}
 const tuple<vector<string>,vector<map<string, double>>> S::GetCharacteristicsMarket()
 {
     jsonAccess.Load();
