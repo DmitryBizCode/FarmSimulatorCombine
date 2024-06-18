@@ -32,6 +32,7 @@ protected:
     bool UpdateUserBallance(double money);
     bool UpdateAuditSpend(double money);
     bool UpdateAuditAll(double money);
+    const map<string, double> GetCharacteristicsM(const string& nam_Id);
 
 public:    
     bool AddCombine(const string& id_nam);
@@ -40,7 +41,6 @@ public:
     SerializationDe() { jsonAccess.data = jsonAccess.Load();}
     bool SetFuelLevel(const double& resizeTo, const string& id_nam);
     bool UpdateFuelLevel(const double& resizeTo, const string& id_nam);
-    const map<string, double> GetCharacteristicsM(const string& nam_Id);
 
     const map<string, double> GetCharacteristics(const string& nam_Id);
     const vector<string> GetCharacteristicsArrayName();

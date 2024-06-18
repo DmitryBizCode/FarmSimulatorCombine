@@ -18,9 +18,9 @@ int main()
     //cout<<M.BuyField(40);
 
     //cout<<M.SellCombine("JohnDeerPRO");
-    cout << M.BuyCombine("JohnDeerPRO");
+    cout << M.BuyCombine("JohnDeer1");
 
-    SerializationDe S;
+   /* SerializationDe S;
     M.BuyField(10);
 
 
@@ -53,7 +53,7 @@ int main()
     cout << S.GetFieldRows();
     cout << endl << endl;
     cout << S.GetFieldColumns();
-    cout << endl << endl;
+    cout << endl << endl;*/
 
     //cout<<M.BuyField(40);
 

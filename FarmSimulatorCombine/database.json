@@ -1,84 +1,95 @@
 {
-		"Audit": {
-				"All": 24678.000000000004,
-				"Spend": 15313.0
-		},
-		"Combines": [
-				{
-						"Characteristics": {
-								"Durability": 100.0,
-								"DurabilityData": 1.0,
-								"Fuel": 100.0,
-								"FuelCapacity": 100,
-								"FuelConsumption": 1.0,
-								"Price": 800
-						},
-						"ID_Name": "JohnDeer"
-				},
-				{
-						"Characteristics": {
-								"Durability": 71.75149999999319,
-								"DurabilityData": 0.95,
-								"Fuel": 116.9247851999982,
-								"FuelCapacity": 150.0,
-								"FuelConsumption": 0.9,
-								"Price": 1000
-						},
-						"ID_Name": "JohnDeerPRO"
-				}
-		],
-		"CombinesMall": [
-				{
-						"Characteristics": {
-								"Durability": 100.0,
-								"DurabilityData": 1.0,
-								"Fuel": 5.0,
-								"FuelCapacity": 100,
-								"FuelConsumption": 1.0,
-								"Price": 800
-						},
-						"ID_Name": "JohnDeer"
-				},
-				{
-						"Characteristics": {
-								"Durability": 100.0,
-								"DurabilityData": 0.95,
-								"Fuel": 5,
-								"FuelCapacity": 150.0,
-								"FuelConsumption": 0.9,
-								"Price": 1000
-						},
-						"ID_Name": "JohnDeerPRO"
-				},
-				{
-						"Characteristics": {
-								"Durability": 100.0,
-								"DurabilityData": 0.85,
-								"Fuel": 5.0,
-								"FuelCapacity": 175,
-								"FuelConsumption": 0.9,
-								"Price": 1500
-						},
-						"ID_Name": "JohnDeer1"
-				},
-				{
-						"Characteristics": {
-								"Durability": 100,
-								"DurabilityData": 0.9,
-								"Fuel": 5,
-								"FuelCapacity": 120.0,
-								"FuelConsumption": 0.8,
-								"Price": 2000
-						},
-						"ID_Name": "JohnDeerPRO2"
-				}
-		],
-		"Field": {
-				"Columns": 36,
-				"Rows": 25
-		},
-		"User": {
-				"Balance": 9350.000000000005,
-				"Years": 2033
-		}
+    "Audit": {
+        "All": 24678.000000000004,
+        "Spend": 16813.0
+    },
+    "Combines": [
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 1.0,
+                "Fuel": 100.0,
+                "FuelCapacity": 100,
+                "FuelConsumption": 1.0,
+                "Price": 800
+            },
+            "ID_Name": "JohnDeer"
+        },
+        {
+            "Characteristics": {
+                "Durability": 71.75149999999319,
+                "DurabilityData": 0.95,
+                "Fuel": 116.9247851999982,
+                "FuelCapacity": 150.0,
+                "FuelConsumption": 0.9,
+                "Price": 1000
+            },
+            "ID_Name": "JohnDeerPRO"
+        },
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 0.85,
+                "Fuel": 5.0,
+                "FuelCapacity": 175,
+                "FuelConsumption": 0.9,
+                "Price": 1500
+            },
+            "ID_Name": "JohnDeer1"
+        }
+    ],
+    "CombinesMall": [
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 1.0,
+                "Fuel": 5.0,
+                "FuelCapacity": 100,
+                "FuelConsumption": 1.0,
+                "Price": 800
+            },
+            "ID_Name": "JohnDeer"
+        },
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 0.95,
+                "Fuel": 5,
+                "FuelCapacity": 150.0,
+                "FuelConsumption": 0.9,
+                "Price": 1000
+            },
+            "ID_Name": "JohnDeerPRO"
+        },
+        {
+            "Characteristics": {
+                "Durability": 100.0,
+                "DurabilityData": 0.85,
+                "Fuel": 5.0,
+                "FuelCapacity": 175,
+                "FuelConsumption": 0.9,
+                "Price": 1500
+            },
+            "ID_Name": "JohnDeer1"
+        },
+        {
+            "Characteristics": {
+                "Durability": 100,
+                "DurabilityData": 0.9,
+                "Fuel": 5,
+                "FuelCapacity": 120.0,
+                "FuelConsumption": 0.8,
+                "Price": 2000
+            },
+            "ID_Name": "JohnDeerPRO2"
+        }
+    ],
+    "Field": {
+        "Columns": 36,
+        "Rows": 25
+    },
+    "User": {
+        "Balance": 7850.0,
+        "Years": 2033
+    }
 }
